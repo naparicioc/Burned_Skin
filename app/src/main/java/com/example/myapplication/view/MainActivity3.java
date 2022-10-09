@@ -15,7 +15,7 @@ public class MainActivity3 extends AppCompatActivity {
         Bundle datos = getIntent().getExtras();
         int num1 = datos.getInt("sum");
 
-        TextView textview3 = findViewById(R.id.textView3);
+        TextView textview3 = findViewById(R.id.resultado);
         textview3.setText(String.valueOf(num1));
     }
 }
