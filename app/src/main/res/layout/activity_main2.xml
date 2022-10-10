@@ -9,13 +9,17 @@
 
     <Button
         android:id="@+id/siguiente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.Button.Toggle"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="260dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="42dp"
+        android:background="#C30A0A"
+        android:fontFamily="@font/candal"
         android:text="Siguiente"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/anterior"
@@ -32,6 +36,8 @@
         android:layout_marginBottom="100dp"
         android:text="0"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.477"
@@ -40,13 +46,17 @@
 
     <Button
         android:id="@+id/anterior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.Button.Toggle"
+        android:layout_width="91dp"
+        android:layout_height="37dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="261dp"
         android:layout_marginEnd="70dp"
         android:layout_marginBottom="42dp"
+        android:background="#C30A0A"
+        android:fontFamily="@font/candal"
         android:text="Anterior"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/siguiente"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,28 +65,35 @@
 
     <TextView
         android:id="@+id/factor"
-        android:layout_width="312dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="49dp"
+        android:layout_width="115dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="49dp"
-        android:text="Factor 1"
+        android:layout_marginEnd="14dp"
+        android:fontFamily="@font/candal"
+        android:text="1"
+        android:textAlignment="viewEnd"
+        android:textColor="#061977"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/textfactor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textviewfactor"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textfactor"
-        android:layout_width="313dp"
-        android:layout_height="95dp"
+        android:layout_width="310dp"
+        android:layout_height="235dp"
         android:layout_marginStart="49dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="49dp"
-        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/robotomedium"
         android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/radiogroup1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/factor" />
 
@@ -85,9 +102,8 @@
         android:layout_width="305dp"
         android:layout_height="250dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/suma"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +118,10 @@
             android:minHeight="48dp"
             android:onClick="onRadioButtonClicked"
             android:text="1"
+            android:textColor="#000000"
+            android:textColorHighlight="#FF1504"
+            android:textColorLink="#FF1504"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="-62dp"
             tools:layout_editor_absoluteY="281dp" />
 
@@ -112,6 +132,10 @@
             android:minHeight="48dp"
             android:onClick="onRadioButtonClicked"
             android:text="2"
+            android:textColor="#000000"
+            android:textColorHighlight="#FF1504"
+            android:textColorLink="#FF1504"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="-62dp"
             tools:layout_editor_absoluteY="281dp" />
 
@@ -122,6 +146,10 @@
             android:minHeight="48dp"
             android:onClick="onRadioButtonClicked"
             android:text="3"
+            android:textColor="#000000"
+            android:textColorHighlight="#FF1504"
+            android:textColorLink="#FF1504"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="-62dp"
             tools:layout_editor_absoluteY="281dp" />
 
@@ -132,6 +160,10 @@
             android:minHeight="48dp"
             android:onClick="onRadioButtonClicked"
             android:text="4"
+            android:textColor="#000000"
+            android:textColorHighlight="#FF1504"
+            android:textColorLink="#FF1504"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="-62dp"
             tools:layout_editor_absoluteY="281dp" />
 
@@ -141,6 +173,29 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:onClick="onRadioButtonClicked"
-            android:text="5" />
+            android:text="5"
+            android:textColor="#000000"
+            android:textColorHighlight="#FF1504"
+            android:textColorLink="#FF1504"
+            android:textSize="20sp" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textviewfactor"
+        android:layout_width="124dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/candal"
+        android:text="Factor"
+        android:textAlignment="viewStart"
+        android:textColor="#061977"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textfactor"
+        app:layout_constraintEnd_toStartOf="@+id/factor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>
