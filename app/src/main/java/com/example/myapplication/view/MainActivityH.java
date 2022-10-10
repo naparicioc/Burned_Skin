@@ -13,7 +13,14 @@ public class MainActivityH extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_h);
-    }
+
+        findViewById(R.id.regresar2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent backIntent = new Intent(getApplicationContext(),MainActivityDP.class);
+                startActivity(backIntent);
+            }
+        });
 
     /**private void cargarPreferencias(){
         SharedPreferences usuarios=getSharedPreferences
@@ -30,4 +37,5 @@ public class MainActivityH extends AppCompatActivity {
         String cirugia = usuario.getString("nombre","xd");
         String eps = usuario.getString("nombre","xd");
     }*/
+    }
 }

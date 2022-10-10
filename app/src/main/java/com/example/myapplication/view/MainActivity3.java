@@ -23,7 +23,7 @@ public class MainActivity3 extends AppCompatActivity {
         findViewById(R.id.regresar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent testIntent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent testIntent = new Intent(getApplicationContext(),MainActivityDP.class);
                 startActivity(testIntent);
             }
         });
