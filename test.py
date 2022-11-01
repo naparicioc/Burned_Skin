@@ -51,10 +51,10 @@ if args.cuda:
 
 kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 
-test_loader = torch.utils.data.DataLoader(Burned('Burned_Data/test', transform_img=transforms.Compose([
-                       transforms.ToTensor()]), 
-                       transform_target=transforms.Compose([
-                       transforms.ToTensor()])), 
+test_loader = torch.utils.data.DataLoader(Burned('Burned_Data/test', transform_img=transforms.Compose([transforms.ToPILImage(),
+                transforms.Resize((256,256)),
+                transforms.ToTensor()]), 
+                       transform_target=None), 
                        batch_size=args.batch_size, shuffle=True, **kwargs)
 
 model = AlexNet.from_pretrained('alexnet', num_classes=3)
@@ -78,7 +78,7 @@ def test(epoch):
             data, target = data.cuda(), target.cuda()
         data, target = Variable(data, volatile=True), Variable(target)
         output = model(data)
-        test_loss += F.nll_loss(output, target).data[0]
+        test_loss += F.nll_loss(output, target).data
         # get the index of the max log-probability
         pred = output.data.max(1)[1]
         correct += pred.eq(target.data).cpu().sum()
