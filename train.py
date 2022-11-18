@@ -7,21 +7,24 @@ import os.path as osp
 import copy
 import torch
 import torch.optim as optim
+import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
-from torchvision import datasets, transforms
+from torchvision import datasets, transforms, models
+import torch.utils.model_zoo as model_zoo
 
 from dataset import Burned
+#from model import AlexNet
 from alexnet_pytorch import AlexNet
 
 parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
-parser.add_argument('--batch-size', type=int, default=64, metavar='N',
+parser.add_argument('--batch-size', type=int, default=1024, metavar='N',
                     help='input batch size for training (default: 64)')
 parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
                     help='input batch size for testing (default: 1000)')
-parser.add_argument('--epochs', type=int, default=10, metavar='N',
+parser.add_argument('--epochs', type=int, default=20, metavar='N',
                     help='number of epochs to train (default: 10)')
-parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
+parser.add_argument('--lr', type=float, default=0.00001, metavar='LR',
                     help='learning rate (default: 0.01)')
 parser.add_argument('--momentum', type=float, default=0.5, metavar='M',
                     help='SGD momentum (default: 0.5)')
@@ -34,7 +37,7 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='how many batches to wait before '
                          'logging training status')
-parser.add_argument('--save', type=str, default='model.pt',
+parser.add_argument('--save', type=str, default='model101_CE_W.pt',
                     help='file on which to save model weights')
 
 args = parser.parse_args()
@@ -48,30 +51,44 @@ kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 
 train_loader = torch.utils.data.DataLoader(Burned('Burned_Data/train', transform_img=transforms.Compose([transforms.ToPILImage(),
                 transforms.Resize((256,256)),
-                transforms.ToTensor()]), 
+                transforms.ToTensor(),
+                transforms.Normalize(mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225])]), 
                        transform_target=None), 
                        batch_size=args.batch_size, shuffle=True, **kwargs)
 
 test_loader = torch.utils.data.DataLoader(Burned('Burned_Data/test', transform_img=transforms.Compose([transforms.ToPILImage(),
                 transforms.Resize((256,256)),
-                transforms.ToTensor()]), 
+                transforms.ToTensor(),
+                transforms.Normalize(mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225])]), 
                        transform_target=None), 
                        batch_size=args.batch_size, shuffle=True, **kwargs)
 
-model = AlexNet.from_pretrained('alexnet', num_classes=3)
+#model = AlexNet.from_pretrained('alexnet', num_classes=3)
+RESNET_18 = 'https://download.pytorch.org/models/resnet18-5c106cde.pth'
+RESNET_101 = 'https://download.pytorch.org/models/resnet101-5d3b4d8f.pth'
+#model = models.resnet18(num_classes=3)  
+model = models.resnet101(num_classes=3)
 cp_model = copy.deepcopy(model)
+criterion = nn.CrossEntropyLoss()
 
 if args.cuda:
     model.cuda()
-
 load_model = False
 if osp.exists(args.save):
     with open(args.save, 'rb') as fp:
         state = torch.load(fp)
         model.load_state_dict(state)
         load_model = True
+else:
+    state = model_zoo.load_url(RESNET_101)
+    state = {x: state[x] for x in state if not x.startswith('fc')}
+    model_state = model.state_dict()
+    model_state.update(state)
+    model.load_state_dict(model_state)
+    print('Done')
 
-optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
+optimizer = optim.Adam(model.parameters(), lr=args.lr)
+#optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
 
 def train(epoch):
     model.train()
@@ -81,7 +98,8 @@ def train(epoch):
         data, target = Variable(data), Variable(target)
         optimizer.zero_grad()
         output = model(data)
-        loss = F.nll_loss(output, target)
+        loss = criterion(output, target)
+        #loss = F.nll_loss(output, target)
         loss.backward()
         optimizer.step()
         if batch_idx % args.log_interval == 0:
@@ -99,7 +117,9 @@ def test(epoch):
             data, target = data.cuda(), target.cuda()
         data, target = Variable(data, volatile=True), Variable(target)
         output = model(data)
-        test_loss += F.nll_loss(output, target).data
+        loss = criterion(output, target)
+        #loss = F.nll_loss(output, target)
+        test_loss += loss
         # get the index of the max log-probability
         pred = output.data.max(1)[1]
         correct += pred.eq(target.data).cpu().sum()

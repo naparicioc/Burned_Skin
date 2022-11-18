@@ -15,7 +15,7 @@ __all__ = ["AlexNet", "AlexNet_Weights", "alexnet"]
 
 
 class AlexNet(nn.Module):
-    def __init__(self, num_classes: int = 1000, dropout: float = 0.5) -> None:
+    def __init__(self, num_classes: int = 3, dropout: float = 0.5) -> None:
         super().__init__()
         _log_api_usage_once(self)
         self.features = nn.Sequential(
