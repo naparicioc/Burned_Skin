@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Burn</string>
     <string name="ingrese_los_datos_del_usuario">Ingrese los datos del usuario</string>
     <string name="hecho">Hecho</string>
     <string name="edad">Edad</string>
@@ -7,4 +7,6 @@
     <string name="eps">EPS</string>
     <string name="correo">Correo</string>
     <string name="age">Age</string>
+    <string name="btn_camara">Abrir cámara</string>
+    <string name="iv_visor">visor</string>
 </resources>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".view.foto">
+
+    <Button
+        android:id="@+id/sig_prediccion"
+        style="@android:style/Widget.Button.Small"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="42dp"
+        android:background="#FF9800"
+        android:fontFamily="@font/robotomedium"
+        android:text="Predicción"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/anterior" />
+
+    <Button
+        android:id="@+id/anterior"
+        style="@android:style/Widget.Button.Small"
+        android:layout_width="91dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="42dp"
+        android:background="#FF9800"
+        android:fontFamily="@font/robotomedium"
+        android:text="Anterior"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sig_prediccion"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textviewfactor"
+        android:layout_width="213dp"
+        android:layout_height="32dp"
+        android:fontFamily="@font/candal"
+        android:text="Tomar foto"
+        android:textAlignment="viewStart"
+        android:textColor="#FF5722"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <ImageView
+        android:id="@+id/iv_visor"
+        android:layout_width="414dp"
+        android:layout_height="430dp"
+        android:layout_marginTop="70dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/btn_camara"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_camara"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="197dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/btn_camara"
+        app:layout_constraintBottom_toTopOf="@+id/btn_select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_visor" />
+
+    <Button
+        android:id="@+id/btn_select"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="197dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="170dp"
+        android:text="Seleccionar foto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_camara" />
+
+</android.support.constraint.ConstraintLayout>
