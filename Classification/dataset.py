@@ -13,6 +13,7 @@ class Burned(Dataset):
 		#self.labels = glob.glob(os.path.join(split, '*.txt')) Solo utillizaremos las imágenes
 
 	def __getitem__(self, index):
+		image_name = self.images[index]
 		image = read_image(self.images[index])
 		image = self.transform_img(image)
 		#file_exists = os.path.exists(self.images[index].replace('.jpg', '.txt'))
@@ -28,7 +29,7 @@ class Burned(Dataset):
 		#label = np.array(int(info_annotation[0].split(' ')[0]))
 		#breakpoint()
 		#label = self.transform_target(label)
-		return image, label
+		return image, label, image_name
 
 	def __len__(self):
 		return len(self.images)
