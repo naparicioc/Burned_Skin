@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myapplication">
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true">
-    </uses-feature>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"></uses-feature>
 
     <application
         android:allowBackup="true"
@@ -16,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".view.liquidos"
+            android:exported="false"
+            tools:ignore="MissingClass" />
         <activity
             android:name=".view.historial"
             android:exported="false">
@@ -71,6 +76,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 
 </manifest>
