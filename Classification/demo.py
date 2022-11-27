@@ -22,7 +22,6 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import torchvision.models as models
 from torchvision import models, datasets, transforms
-from torchvision.models.segmentation.deeplabv3 import DeepLabHead
 
 # Arguments
 parser = argparse.ArgumentParser(description='PyTorch Deeplab v3 Example')
@@ -134,7 +133,7 @@ def visual_results():
     plt.title('Anotación: '+str(target+1), fontsize=10)
     plt.imshow(Image.open(path_image))
     plt.axis(False)
-    plt.savefig("VisualResults3.png")
+    plt.savefig("VisualResults19.png")
 
 if __name__ == '__main__':
     best_loss = None
