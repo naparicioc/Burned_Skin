@@ -77,8 +77,9 @@ def BIT_prediction(image_path: str) -> int:
     breakpoint()
     pred = F.softmax(output, dim=1).numpy()
     pred = np.argmax(pred, axis=1)
-    print(int(pred))
-    return int(pred)
+    class_type = int(pred)+1
+    print(class_type)
+    return class_type
 
 if __name__ == '__main__':
     if model_ready:
