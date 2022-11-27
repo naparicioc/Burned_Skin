@@ -133,7 +133,8 @@ public class foto extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(foto.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(foto.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(foto.this,"Error in nertwork", Toast.LENGTH_LONG).show();
                     }
                 });
             }
