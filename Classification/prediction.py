@@ -38,31 +38,26 @@ parser.add_argument('--save', type=str, default='model101_CE_W.pt',
                     help='file on which to save model weights')
 args = parser.parse_args()
 
-args.cuda = not args.no_cuda and torch.cuda.is_available()
-
-torch.manual_seed(args.seed)
-if args.cuda:
-    torch.cuda.manual_seed(args.seed)
-
-kwargs = {'num_workers': 0, 'pin_memory': True} if args.cuda else {}
-
-#Upload Best Model
-model = models.resnet101(num_classes=args.n_classes)
-
-if args.cuda:
-    model.cuda()
-load_model = False
-
-with open(args.save, 'rb') as fp: #Instead of args.save, you can upload the name of the .pt file -it means tour model-
-    state = torch.load(fp)
-    model.load_state_dict(state)
-    load_model = True
-    model_ready = True
-
-cp_model = copy.deepcopy(model)
-criterion = nn.CrossEntropyLoss() #The loss criterion is defined 
-
 def BIT_prediction(image_path: str) -> int:
+    args.cuda = not args.no_cuda and torch.cuda.is_available()
+    torch.manual_seed(args.seed)
+    if args.cuda:
+        torch.cuda.manual_seed(args.seed)
+
+    kwargs = {'num_workers': 0, 'pin_memory': True} if args.cuda else {}
+
+    #Upload Best Model
+    model = models.resnet101(num_classes=args.n_classes)
+
+    if args.cuda:
+        model.cuda()
+    load_model = False
+
+    with open(args.save, 'rb') as fp: #Instead of args.save, you can upload the name of the .pt file -it means tour model-
+        state = torch.load(fp)
+        model.load_state_dict(state)
+        load_model = True
+        model_ready = True
     image = read_image(image_path) #We are reading the image path
     transforms_pred = transforms.Compose([transforms.ToPILImage(),
                 transforms.Resize((256,256)),
@@ -74,7 +69,6 @@ def BIT_prediction(image_path: str) -> int:
     image = Variable(image)
     with torch.no_grad():
         output = model(torch.unsqueeze(image,0))
-    breakpoint()
     pred = F.softmax(output, dim=1).numpy()
     pred = np.argmax(pred, axis=1)
     class_type = int(pred)+1
@@ -82,5 +76,4 @@ def BIT_prediction(image_path: str) -> int:
     return class_type
 
 if __name__ == '__main__':
-    if model_ready:
-        BIT_prediction(image_path='/media/SSD6/naparicioc/Burned_Skin/Classification/Burned_Data/train/img2.jpg')
+    BIT_prediction(image_path='/media/SSD6/naparicioc/Burned_Skin/Classification/Burned_Data/train/img2.jpg')
