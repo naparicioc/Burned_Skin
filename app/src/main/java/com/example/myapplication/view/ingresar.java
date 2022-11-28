@@ -29,7 +29,7 @@ public class ingresar extends AppCompatActivity {
         findViewById(R.id.inicio).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mail.getText().length() > 0 && pass.getText().length() > 0) {
+                if (true) {//mail.getText().length() > 0 && pass.getText().length() > 0) {
                     Intent testIntent = new Intent(getApplicationContext(), iniciodoctor.class);
                     startActivity(testIntent);
                 }
@@ -43,9 +43,6 @@ public class ingresar extends AppCompatActivity {
                 startActivity(registroIntent);
             }
         });
-}
-    private void fun(){
-        inicio.setEnabled((mail.getText().length() > 0) && (pass.getText().length() > 0));
-    }
 
-}
+
+    }}

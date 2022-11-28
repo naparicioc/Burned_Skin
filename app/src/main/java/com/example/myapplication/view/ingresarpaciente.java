@@ -32,7 +32,7 @@ public class ingresarpaciente extends AppCompatActivity {
         findViewById(R.id.siguiente_ingdatos).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (((nombre_p.getText().length() > 0) && (id_p.getText().length() > 0) && (edad_p.getText().length() > 0) && (eps_p.getText().length() > 0) && (fecha_p.getText().length() > 0) && (hora_p.getText().length() > 0))){
+                if (true){//((nombre_p.getText().length() > 0) && (id_p.getText().length() > 0) && (edad_p.getText().length() > 0) && (eps_p.getText().length() > 0) && (fecha_p.getText().length() > 0) && (hora_p.getText().length() > 0))){
                     guardarPreferencias2();
                     Intent testIntent = new Intent(getApplicationContext(), foto.class);
                     startActivity(testIntent);
