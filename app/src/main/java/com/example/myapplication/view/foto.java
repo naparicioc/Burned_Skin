@@ -135,6 +135,10 @@ public class foto extends AppCompatActivity {
                     public void run() {
                         //Toast.makeText(foto.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         Toast.makeText(foto.this,"Error in nertwork", Toast.LENGTH_LONG).show();
+                        SharedPreferences sharedPref = getSharedPreferences("Datos", foto.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("pred", "-1");
+                        editor.apply();
                     }
                 });
             }
@@ -145,7 +149,7 @@ public class foto extends AppCompatActivity {
                 String pred = response.body().string();
                 SharedPreferences sharedPref = getSharedPreferences("Datos", foto.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor. putString("pred", pred);
+                editor.putString("pred", pred);
                 editor.apply();
             }
 
