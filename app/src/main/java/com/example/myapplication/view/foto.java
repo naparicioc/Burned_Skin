@@ -123,7 +123,7 @@ public class foto extends AppCompatActivity {
         return byteArrayOutputStream.toByteArray();
     }
     private void getPred(final String imgString) {
-        String url = "http://192.168.10.12:5000/test";
+        String url = "http://192.168.207.228:5000/test";
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody formbody = new FormBody.Builder().add("encodeimg", imgString).build();
         Request request =new Request.Builder().url(url).post(formbody).build();
