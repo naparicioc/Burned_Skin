@@ -30,7 +30,7 @@ public class ingresar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (mail.getText().length() > 0 && pass.getText().length() > 0) {
-                    Intent testIntent = new Intent(getApplicationContext(), foto.class);
+                    Intent testIntent = new Intent(getApplicationContext(), iniciodoctor.class);
                     startActivity(testIntent);
                 }
             }
